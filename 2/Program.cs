@@ -15,15 +15,15 @@
 Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 */
 /// <summary>
-/// Этот метод заполняет двумерный массив
-/// числами от min до max
+/// Этот метод заполняет двумерный массив,
+/// числами от min до max.
 /// </summary>
-/// <param name="rows">Количество строк</param>
-/// <param name="cols">Количество столбцов</param>
-/// <param name="min">Минимальное число для рандома</param>
-/// <param name="max">Максимальное число для рандома</param>
-/// <returns>Заполненный двумерный массив целых чисел</returns>
-int[,] GetMatrixRndInt(int rows, int cols, int min, int max) 
+/// <param name="rows"> Количество строк. </param>
+/// <param name="cols"> Количество столбцов. </param>
+/// <param name="min"> Минимальное число для рандома. </param>
+/// <param name="max"> Максимальное число для рандома. </param>
+/// <returns> Заполненный двумерный массив целых чисел. </returns>
+int[,] GetMatrixRndInt(int rows, int cols, int min, int max)
 {
     int[,] matrix = new int[rows, cols];
     for (int i = 0; i < rows; i++)
@@ -36,26 +36,27 @@ int[,] GetMatrixRndInt(int rows, int cols, int min, int max)
     return matrix;
 }
 /// <summary>
-/// Метод печатает матрицу, которую передали на вход
+/// Метод печатает матрицу, которую передали на вход.
 /// </summary>
-/// <param name="inputMatrix"> Двумерный массив или таблица </param>
+/// <param name="inputMatrix"> Входная матрица. </param>
 void PrintMatrix(int[,] inputMatrix)
 {
-    for (int i = 0; i < inputMatrix.GetLength(0); i++) // Строчки
+    for (int i = 0; i < inputMatrix.GetLength(0); i++)
     {
-        for (int j = 0; j < inputMatrix.GetLength(1); j++) // Столбцы
+        for (int j = 0; j < inputMatrix.GetLength(1); j++)
         {
-            Console.Write(inputMatrix[i, j] + "\t");
+            if (j < inputMatrix.GetLength(1) - 1) Console.Write($"{inputMatrix[i, j]}\t");
+            else Console.Write($"{inputMatrix[i, j]}\t");
         }
         Console.WriteLine();
     }
 }
 /// <summary>
-/// Метод вычисляет сумму элементов в каждой строке
+/// Метод вычисляет сумму элементов в каждой строке.
 /// </summary>
-/// <param name="matrix">Двумерный массив</param>
-/// <returns>Одномерный массив, заполненный этими суммами</returns>
-int[] CountSumForEachRow(int[,] matrix)
+/// <param name="matrix"> Двумерный массив. </param>
+/// <returns> Одномерный массив, заполненный суммами. </returns>
+int[] CountSumEachRow(int[,] matrix)
 {
     int[] sumArray = new int[matrix.GetLength(0)];
 
@@ -69,9 +70,9 @@ int[] CountSumForEachRow(int[,] matrix)
     return sumArray;
 }
 /// <summary>
-/// Метод печатает одномернный массив, которую передали на вход
+/// Метод печатает одномернный массив, которую передали на вход.
 /// </summary>
-/// <param name="array">Одномерный массив</param>
+/// <param name="array"> Входная матрица. </param>
 void PrintArray(int[] array)
 {
     Console.Write("(");
@@ -84,9 +85,10 @@ void PrintArray(int[] array)
 }
 /// <summary>
 /// Метод принимает на вход одномерный массив
+/// и вычисляет наименьшее число среди значений элементов.
 /// </summary>
-/// <param name="array">Одномерный массив</param>
-/// <returns>Находит наименьшее число среди значений элементов</returns>
+/// <param name="array"> Одномерный массив. </param>
+/// <returns> Выходная матрица. </returns>
 int FindLessNumber(int[] array)
 {
     int min = array[0];
@@ -104,9 +106,11 @@ int FindLessNumber(int[] array)
 }
 
 Console.Clear();
-int[,] array2D = GetMatrixRndInt(6, 6, 0, 9);
-PrintMatrix(array2D);
+int[,] resultMatrix = GetMatrixRndInt(6, 6, 0, 9);
+PrintMatrix(resultMatrix);
 Console.WriteLine();
-int[] sumArr = CountSumForEachRow(array2D);
-PrintArray(sumArr);
-Console.WriteLine($"Строка с наименьшей суммой элементов: {FindLessNumber(sumArr)+1} строка");
+int[] sumArray = CountSumEachRow(resultMatrix);
+PrintArray(sumArray);
+Console.WriteLine();
+Console.WriteLine($"Начало от 1й строки, строка с наименьшей суммой элементов: {FindLessNumber(sumArray) + 1} строка");
+Console.WriteLine();
